@@ -7,5 +7,5 @@
 -->
 <!--<canvas id="barChart">{{ chart }}</canvas>-->
 <div style="width: 100%; height: 100%; margin: auto; text-align: center;">
-  <canvas id="barChart">{{ chart }}</canvas>
+  <canvas *ngIf="showChart" id="barChart">{{ chart }}</canvas>
 </div>

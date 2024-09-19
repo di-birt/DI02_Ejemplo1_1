@@ -10,11 +10,32 @@ export class BarChartComponent implements OnInit {
  
   // Atributo que almacena los datos del chart
   public chart!: Chart;
+  public showChart: boolean = false; // Bandera para controlar el renderizado del canvas
  
+  // Este método ya no inicializa la gráfica, solo activa una bandera para demostrar el uso de ngIf
   ngOnInit(): void {
-    console.log("Ejecuta bar-chart")
+    console.log("ngOnInit ejecutado, pero showChart es false, canvas no está en el DOM aún.");
+    // Aquí podríamos simular la carga de datos o cualquier otra lógica.
+    setTimeout(() => {
+      // Activamos el canvas después de un tiempo
+      this.showChart = true; 
+      console.log("Canvas disponible en el DOM. Se mostrará.");
+    }, 2000); // Simulamos un retraso (por ejemplo, una llamada a una API)
     this.inicializarChart();
+ 
   }
+
+  // // Inicializamos el gráfico cuando el DOM esté completamente disponible
+  // ngAfterViewInit(): void {
+  //   console.log("ngAfterViewInit ejecutado, esperando a que showChart sea true...");
+  //   // Esperamos un tiempo hasta que el canvas se haya renderizado con la condición del ngIf
+  //   const interval = setInterval(() => {
+  //     if (this.showChart) {
+  //       this.inicializarChart(); // Inicializamos la gráfica solo cuando showChart es true
+  //       clearInterval(interval); // Limpiamos el intervalo
+  //     }
+  //   }, 100); // Verificamos cada 100 ms si el canvas ya está en el DOM
+  // }
 
   private inicializarChart(){
     // datos
@@ -96,7 +117,7 @@ export class BarChartComponent implements OnInit {
         },
       }
     });
-    this.chart.canvas.width = 100;
-    this.chart.canvas.height = 100;
+    //this.chart.canvas.width = 100;
+    //this.chart.canvas.height = 100;
   }
 }
